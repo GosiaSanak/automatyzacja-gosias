@@ -10,14 +10,21 @@ namespace MiejscaZerowe
             {
                 Console.Write("Podaj wartość współczynnika: a = ");
                 string a = Console.ReadLine();
+                
+                
 
                 Console.Write("Podaj wartość współczynnika: b = ");
                 string b = Console.ReadLine();
+                
 
                 Console.Write("Podaj wartość współczynnika: c = ");
                 string c = Console.ReadLine();
+                
 
-                Console.WriteLine(Calculate(new string[] { a, b, c }));
+                var odp = Calculate(new string[] { a, b, c }); 
+                Console.WriteLine(odp);
+
+
             }
             else
             {
@@ -29,7 +36,78 @@ namespace MiejscaZerowe
 
         public static string Calculate(string[] args)
         {
-            throw new NotImplementedException();
+            
+            if (args.Length == 0)
+            {
+                string OczekiwanyWynik = "Nie podano żadnych współczynników.";
+                return OczekiwanyWynik;
+            }
+            else if (args.Length == 1)
+            {
+                string OczekiwanyWynik = "Podano 1 zamiast 3 współczynników.";
+                return OczekiwanyWynik;
+            }
+            else if (args.Length == 2)
+            {
+                string OczekiwanyWynik = "Podano 2 zamiast 3 współczynników.";
+                return OczekiwanyWynik;
+            }
+            else if (args.Length == 3)
+            {
+
+                bool niepA = double.TryParse(args[0], out double a);
+                bool niepB = double.TryParse(args[1], out double b);
+                bool niepC = double.TryParse(args[2], out double c);
+
+                if (niepA == false)
+                {
+                    string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'a' funkcji.";
+                    return OczekiwanyWynik;
+                }    
+                else if (niepB == false)
+                {
+                    string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'b' funkcji.";
+                    return OczekiwanyWynik;
+                }
+                else if (niepC == false)
+                {
+                    string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'c' funkcji.";
+                    return OczekiwanyWynik;
+                }
+             
+                    double x1 = 0;
+                    double x2 = 0;
+                    
+
+                    var delta = b*b - 4*a*c;
+
+                    if (delta > 0)
+                    {
+                    x1 = (-b - Math.Sqrt(delta)) / (2 * a);
+                    x2 = (-b + Math.Sqrt(delta)) / (2 * a);
+
+                        string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = " + x1 +", x2 = " + x2;
+                        return OczekiwanyWynik;
+
+                    }
+                    else if (delta == 0)
+                    {
+                        x1 = -b / (2 * a);
+
+                        string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = " + x1;
+                        return OczekiwanyWynik;
+
+                    }
+                    else
+                    {
+                        string OczekiwanyWynik = "Brak miejsc zerowych.";
+                        return OczekiwanyWynik;
+
+                    }
+                
+                
+            }
+                throw new NotImplementedException();
 
             // Napisz implementację metody 'Calculate' obliczającej miejsca zerowe funkcji kwadratowej
             // o podanych współczynnikach a, b oraz c.
