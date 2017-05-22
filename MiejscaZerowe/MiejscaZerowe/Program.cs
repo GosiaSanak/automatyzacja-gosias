@@ -1,17 +1,23 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 
 namespace MiejscaZerowe
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+            // Sets the culture to US (en-US)
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+
             if (args.Length == 0)
             {
                 Console.Write("Podaj wartość współczynnika: a = ");
                 string a = Console.ReadLine();
-                
-                
+                   
 
                 Console.Write("Podaj wartość współczynnika: b = ");
                 string b = Console.ReadLine();
@@ -58,12 +64,13 @@ namespace MiejscaZerowe
                 bool niepA = double.TryParse(args[0], out double a);
                 bool niepB = double.TryParse(args[1], out double b);
                 bool niepC = double.TryParse(args[2], out double c);
+             
 
                 if (niepA == false)
                 {
                     string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'a' funkcji.";
                     return OczekiwanyWynik;
-                }    
+                }
                 else if (niepB == false)
                 {
                     string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'b' funkcji.";
@@ -74,38 +81,95 @@ namespace MiejscaZerowe
                     string OczekiwanyWynik = "Niepoprawna wartość współczynnika 'c' funkcji.";
                     return OczekiwanyWynik;
                 }
-             
-                    double x1 = 0;
-                    double x2 = 0;
+                else if (a == 0 && b == 0 && c == 0)
+                
+                {
+                    string OczekiwanyWynik = "Nieskończenie wiele miejsc zerowych.";
+                    return OczekiwanyWynik;
+                }
+                else if (a == 0 && b == 0 && c != 0)
+
+                {
+                    string OczekiwanyWynik = "Brak miejsc zerowych.";
+                    return OczekiwanyWynik;
+                }
+                else if (a == 0 && c == 0 && b != 0 )
+
+                {
+                    string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = 0";
+                    return OczekiwanyWynik;
+                }
+                else if (b == 0 && c == 0 && a != 0)
+
+                {
+                    string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = 0";
+                    return OczekiwanyWynik;
+                }
+
+                double x1 = 0;
+                double x2 = 0;
+
+
+
+
+
+                var delta = b*b - 4*a*c;
+
+                if (a==0 && c != 0 && b != 0)
+                {
+                    x1 = -c / b;
+
+                    string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = " + x1;
+                    return OczekiwanyWynik;
+                }
                     
-
-                    var delta = b*b - 4*a*c;
-
-                    if (delta > 0)
-                    {
+                if (a !=0 && b == 0 && c != 0)
+                {
                     x1 = (-b - Math.Sqrt(delta)) / (2 * a);
                     x2 = (-b + Math.Sqrt(delta)) / (2 * a);
 
-                        string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = " + x1 +", x2 = " + x2;
-                        return OczekiwanyWynik;
+                    string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = " + Math.Round(x1,2) + ", x2 = " + Math.Round(x2,2);
+                    return OczekiwanyWynik;
+                }
+                if (a != 0 && b != 0 && c == 0)
+                {
+                    x1 = (-b - Math.Sqrt(delta)) / (2 * a);
+                    x2 = (-b + Math.Sqrt(delta)) / (2 * a);
 
-                    }
-                    else if (delta == 0)
-                    {
-                        x1 = -b / (2 * a);
+                    string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = " + Math.Round(x1, 2) + ", x2 = " + Math.Round(x2, 2);
+                    return OczekiwanyWynik;
+                }
+                else if (delta > 0)
+                {
+                    x1 = (-b - Math.Sqrt(delta)) / (2 * a);
+                    x2 = (-b + Math.Sqrt(delta)) / (2 * a);
 
-                        string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = " + x1;
-                        return OczekiwanyWynik;
+                    string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = " + x1 + ", x2 = " + x2;
+                    return OczekiwanyWynik;
 
-                    }
-                    else
-                    {
+                }
+                else if (delta == 0)
+                {
+                    x1 = -b / (2 * a);
+
+                    string OczekiwanyWynik = "Jedno miejsce zerowe: x0 = " + x1;
+                    return OczekiwanyWynik;
+
+                }
+
+                else if (delta < 0)
+                {
                         string OczekiwanyWynik = "Brak miejsc zerowych.";
                         return OczekiwanyWynik;
 
-                    }
+                }
                 
                 
+            }
+            else if (args.Length > 3)
+            {
+                string OczekiwanyWynik = "Podano więcej niż 3 współczynniki.";
+                return OczekiwanyWynik;
             }
                 throw new NotImplementedException();
 
