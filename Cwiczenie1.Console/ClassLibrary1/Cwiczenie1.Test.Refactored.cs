@@ -8,48 +8,50 @@ using Xunit;
 
 namespace Cwiczenie1.Tests
 {
-    public class CalcTests
+    public class CalcTestsRefactored
     {
+        private Calc _calculator;
+
+        public CalcTestsRefactored() //construktor
+        {
+            _calculator = new Calc(9, 3);
+        }
+
         [Fact]
         public void Dodawanie_zwraca_sume_dwoch_liczb()
         {
+            var result = _calculator.Suma();
+            Assert.Equal(12, result);
+        }
+
+        [Theory] //zawsze zamiast [Fact] przy wprowadzaniu zmiennych
+        [InlineData(1,2,-1)] //zawsze zamiast [Fact] przy wprowadzaniu zmiennych
+        public void Odejmowanie_zwraca_roznice_dwoch_liczb(int x, int y, int expected)
+        {
 
             //arrange
-            var calculator = new Calc(10, 15);
+            var calculator = new Calc(x, y);
 
             //act
             var result = calculator.Roznica();
 
             //assert
-            Assert.Equal(-5, result);
+            Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void Odejmowanie_zwraca_roznice_dwoch_liczb()
+        [Theory] 
+        [InlineData(1, 2, 0.5)]
+        public void Iloraz_zwraca_wynik_dzielenia_dwoch_liczb(int x, int y, double expected)
         {
 
             //arrange
-            var calculator = new Calc(9, 6);
-
-            //act
-            var result = calculator.Roznica();
-
-            //assert
-            Assert.Equal(3, result);
-        }
-
-        [Fact]
-        public void Iloraz_zwraca_wynik_dzielenia_dwoch_liczb()
-        {
-
-            //arrange
-            var calculator = new Calc(10, 5);
+            var calculator = new Calc(x, y);
 
             //act
             var result = calculator.Iloraz();
 
             //assert
-            Assert.Equal(2, result);
+            Assert.Equal(expected, result);
         }
 
         [Fact]
