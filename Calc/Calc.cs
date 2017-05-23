@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClassLibrary1
+﻿namespace Calculator
 {
     public class Calc
     {
@@ -34,9 +28,4 @@ namespace ClassLibrary1
         }
 
     }
-    /*var suma = new Calc(10, 20);
-    var roznica = new Calc(2, 9);
-    var iloczyn = new Calc(4, 5);
-    var iloraz = new Calc(6, 7);
-    */
 }
