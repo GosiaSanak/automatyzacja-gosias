@@ -11,12 +11,11 @@ namespace Cwiczenie1
     {
         static void Main(string[] args)
         {
-            Calc Kalkulator = new Calc(10, 20);
-            Console.WriteLine("Suma = " + Kalkulator.Suma());
+            Calc Kalkulator1 = new Calc(10, 20);
+            Console.WriteLine("Suma = " + Kalkulator1.Suma());
             Console.ReadKey();
 
-
-         
+           
         }
     }
 }
