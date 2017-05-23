@@ -9,7 +9,13 @@ namespace MiejscaZerowe
 
         public static void Main(string[] args)
         {
-            // Sets the culture to US (en-US)
+
+            //CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread......;
+            //customCulture.NumberFormat.NumberDecmalSeparator = ".";
+            //customCulture.NumberFormat.NumberNegativePattern = 1;
+            //customCulture.NumberFormat.NumberGroupSeparator = "";
+            //System.Threading.Thread.CurrentThread.CurrentCulture = customculture;
+
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
@@ -64,7 +70,7 @@ namespace MiejscaZerowe
                 bool niepA = double.TryParse(args[0], out double a);
                 bool niepB = double.TryParse(args[1], out double b);
                 bool niepC = double.TryParse(args[2], out double c);
-             
+             // convert i catch zamiast TryParse
 
                 if (niepA == false)
                 {
@@ -171,7 +177,7 @@ namespace MiejscaZerowe
                 string OczekiwanyWynik = "Podano więcej niż 3 współczynniki.";
                 return OczekiwanyWynik;
             }
-                throw new NotImplementedException();
+                
 
             // Napisz implementację metody 'Calculate' obliczającej miejsca zerowe funkcji kwadratowej
             // o podanych współczynnikach a, b oraz c.
