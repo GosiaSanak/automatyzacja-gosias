@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "..\Calc\Calcu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{5711B13D-CDE3-4D3D-AB39-AE3201F0D6A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleTesting", "ClassLibrary3\GoogleTesting.csproj", "{3107A207-428B-4994-9F0F-C2EFDCB0BC1B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5711B13D-CDE3-4D3D-AB39-AE3201F0D6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5711B13D-CDE3-4D3D-AB39-AE3201F0D6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5711B13D-CDE3-4D3D-AB39-AE3201F0D6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3107A207-428B-4994-9F0F-C2EFDCB0BC1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3107A207-428B-4994-9F0F-C2EFDCB0BC1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3107A207-428B-4994-9F0F-C2EFDCB0BC1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3107A207-428B-4994-9F0F-C2EFDCB0BC1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
