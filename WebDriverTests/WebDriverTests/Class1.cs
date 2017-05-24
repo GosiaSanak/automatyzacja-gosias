@@ -45,7 +45,10 @@ namespace WebDriverTests
 
             Assert.Equal("Vivamus aliquam feugiat", firstNoteTitle);
         }
-        // gogawanie nowej notki jako admin i weryfikacja tej notki
+        
+        
+        
+        // DODAWANIE_nowej_notki_jako_admin_i_WERYFIKACJA_tej_notki_jako_niezalogowany_uzytkownik
 
         private void waitForElementPresent(By by, int seconds)
         {
@@ -53,7 +56,6 @@ namespace WebDriverTests
             wait.Until(ExpectedConditions.ElementToBeClickable(by));
         }
 
-        // DODAWANIE nowej notki jako admin i weryfikacja tej notki
         [Fact]
         public void AddNote()
         {
@@ -87,9 +89,11 @@ namespace WebDriverTests
 
             _driver.FindElementByCssSelector(".ab-sign-out").Click();
             
-            _driver.Navigate().GoToUrl("https://autotestdotnet.wordpress.com/");
+            _driver.Navigate().GoToUrl(permalink);
 
-            var tytulznalezionejnotki = _driver.FindElementByXPath("//a[@href='" + permalink + "']").Text;
+            var tytulznalezionejnotki = _driver.FindElementByClassName("entry-title").Text;
+
+            //var tytulznalezionejnotki = _driver.FindElementByXPath("//a[@href='" + permalink + "']").Text; - szukanie linka z tytulu i przerobienie go na text do porownania
 
 
             Assert.Equal(tytulNotki, tytulznalezionejnotki);
