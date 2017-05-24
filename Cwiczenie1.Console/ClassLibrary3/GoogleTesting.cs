@@ -20,6 +20,10 @@ namespace GoogleTesting
                 .Timeouts()
                 .ImplicitlyWait(TimeSpan.FromSeconds(5)); //jak sie opozni, to driver czeka 5 sekund, zanim krzyknie ze czegos nie znalazl
         }
+        public void Dispose
+        {
+            _driver.Quit();
+        }
 
         [Fact]
         public void Hello_test()
@@ -32,7 +36,7 @@ namespace GoogleTesting
             Assert.NotNull(result);
             Assert.Equal("Code Sprinters -", result.Text);
 
-            _driver.Quit();
+            
         }
     }
 }
