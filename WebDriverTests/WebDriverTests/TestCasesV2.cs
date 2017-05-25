@@ -13,11 +13,12 @@ namespace WebDriverTests
     public class TestCasesV2: IDisposable
     {
         public readonly string tytulNotki;
-        public static object NotatkaTestowa;
+        public static string NotatkaTestowa;
 
         public TestCasesV2()
         {
-            string tytulNotki = "Test notatki Goska " + Guid.NewGuid();
+            tytulNotki = "Test notatki Goska " + Guid.NewGuid();
+            NotatkaTestowa = "testetetstkjcdabckbddkbdsakcb,asbdkf";
         }
 
         [Fact]
@@ -89,8 +90,10 @@ namespace WebDriverTests
 
         }
 
-        internal static string CreateNewPost(object tytulNotki, object notatkaTestowa)
+        internal static string CreateNewPost(string tytulNotki, string notatkaTestowa)
         {
+            _driver.FindElementsByClassName("wp-menu-name")[2].Click();
+
             _driver.FindElementByClassName("page-title-action").Click();
 
             _driver.FindElementById("title").SendKeys(tytulNotki);
@@ -104,6 +107,12 @@ namespace WebDriverTests
             waitForElementPresent(By.Id("sample-permalink"), 10);
 
             return _driver.FindElementByXPath("(//span[@id='sample-permalink']/a)[1]").GetAttribute("href");
+        }
+
+        private static void waitForElementPresent(By by, int seconds)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(seconds));
+            wait.Until(ExpectedConditions.ElementToBeClickable(by));
         }
 
         internal static void Logout()
