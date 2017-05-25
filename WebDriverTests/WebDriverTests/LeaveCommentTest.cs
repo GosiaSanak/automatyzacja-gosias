@@ -18,7 +18,7 @@ namespace WebDriverTests
             WebBrowser.Driver.Quit();
         }
 
-        [Fact]
+        //[Fact]
         public void When_user_is_not_logged_in_and_can_add_comment()
         {
             MainPage.GoTo();
@@ -29,6 +29,18 @@ namespace WebDriverTests
 
 
         }
+
+        [Fact]
+        public void Adding_comment_to_another_comment()
+        {
+            MainPage.GoTo();
+            MainPage.AssertNotLoggedIn();
+            MainPage.SearchForComment();
+            MainPage.ReplyToComment(ExampleComment);
+            MainPage.AssertCommentExist(ExampleComment);
+
+        }
+   
     }
 
     

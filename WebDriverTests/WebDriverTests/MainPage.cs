@@ -32,7 +32,39 @@ namespace WebDriverTests
             WaitForElementPresent(InfiniteHandle);
         }
 
-     
+
+        internal static void SearchForComment()
+        {
+            var comment = Browser.FindElement(By.XPath("(//*[@class='comments-link']/a)[last()]"));
+            var leaveCommentText = comment.Text;
+            while (leaveCommentText == "Leave a comment") 
+            {
+                ShowNextPage();
+                comment = Browser.FindElement(By.XPath("(//*[@class='comments-link']/a)[last()]"));
+                leaveCommentText = comment.Text;
+            }
+        }
+
+        internal static void ReplyToComment(Comment exampleComment)
+        {
+
+            Browser.FindElement(By.XPath("(//*[@class='comments-link']/a)[last()]")).Click();
+            Browser.FindElement(By.XPath("(//*[@class='reply']/a)")).Click();
+
+
+            var commentBox = Browser.FindElement(By.Id("comment"));
+            commentBox.Click();
+            commentBox.SendKeys(exampleComment.Text);
+
+            var mailField = Browser.FindElement(By.Id("email"));
+            mailField.SendKeys(exampleComment.Email);
+
+            var authorField = Browser.FindElement(By.Id("author"));
+            authorField.SendKeys(exampleComment.Author);
+
+            var submitElement = Browser.FindElement(By.Id("comment-submit"));
+            submitElement.Click();
+        }
 
         internal static void LeaveComment(Comment exampleComment)
         {
