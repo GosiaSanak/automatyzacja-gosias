@@ -68,7 +68,8 @@ namespace WebDriverTests
                 &&
                 c.FindElement(By.TagName("p")).Text == exampleComment.Text
                 );
-            
+
+            Assert.NotNull(comment);
 
             // mozna to tak alternatywnie zrobic, ale trzeba okreslic author i commentText na stronie"
             // string author = 
