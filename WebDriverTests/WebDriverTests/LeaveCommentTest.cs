@@ -1,8 +1,9 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace WebDriverTests
 {
-    public class LeaveCommentTest
+    public class LeaveCommentTest : IDisposable
     {
         private Comment ExampleComment = new Comment //tworzymy nowa klase comment, zeby w niej trzymac wszystkie propertiesy
         {
@@ -11,6 +12,11 @@ namespace WebDriverTests
             Text = "blebleble, chodzmy na kawe",
 
         };
+
+        public void Dispose()
+        {
+            WebBrowser.Driver.Quit();
+        }
 
         [Fact]
         public void When_user_is_not_logged_in_and_can_add_comment()
