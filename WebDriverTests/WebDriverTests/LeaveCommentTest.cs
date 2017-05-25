@@ -7,9 +7,9 @@ namespace WebDriverTests
     {
         private Comment ExampleComment = new Comment //tworzymy nowa klase comment, zeby w niej trzymac wszystkie propertiesy
         {
-            Name = "Selenium",
+            Author = Guid.NewGuid().ToString(),
             Email = "some_mail@bleble.com",
-            Text = "blebleble, chodzmy na kawe",
+            Text = Guid.NewGuid().ToString(),
 
         };
 
